@@ -142,3 +142,22 @@ describe("0 ~ 9 사이의 무작위 값 중 4 이상일 경우 전진하는 기�
     expect(shouldMove()).toBe(false);
   });
 });
+
+describe("실행 결과를 자동차 이름과 함께 시도 횟수만큼 출력하는 기능", () => {
+  test("기능 테스트", () => {
+    const carNames = ["토마스", "니콜라스"];
+    const moveCounts = [5, 3];
+    const repeatCount = 3;
+    const logs = ["\n실행 결과", "토마스 : -", "니콜라스 : "];
+    const logSpy = getLogSpy();
+
+    mockRandoms(moveCounts);
+
+    const app = new App();
+    app.play(carNames, repeatCount);
+
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
+  });
+});

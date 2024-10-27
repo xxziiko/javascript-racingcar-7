@@ -41,3 +41,7 @@ export const shouldMove = () => {
 
   return false;
 };
+
+export const printResult = (result) => {
+  return Console.print(result);
+};

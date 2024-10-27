@@ -5,6 +5,8 @@ import {
   checkValidLength,
   readInput,
   checkValidNumber,
+  shouldMove,
+  printResult,
 } from "./utils.js";
 
 class App {
@@ -48,9 +50,38 @@ class App {
     return this.validateCount(count, MESSAGES.ERROR_INVALID_NUMBER);
   }
 
+  countMove(number, array) {
+    for (let i = 0; i < number; i++) {
+      if (shouldMove()) array[i] += 1;
+    }
+  }
+
+  moveCars(carNames, array) {
+    for (const [i, carName] of carNames.entries()) {
+      printResult(carName.trim() + " : " + "-".repeat(array[i]));
+    }
+  }
+
+  displayCarProgress(carNames, count, array) {
+    printResult(MESSAGES.PRINT_PROGRESS);
+
+    for (let i = 0; i < count; i++) {
+      this.countMove(carNames.length, array);
+      this.moveCars(carNames, array);
+      printResult(" ");
+    }
+  }
+
+  play(carNames, count) {
+    const progress = Array(carNames.length).fill(0);
+
+    this.displayCarProgress(carNames, count, progress);
+  }
+
   async run() {
     const carNames = await this.getCarNames();
     const count = await this.getCount();
+    this.play(carNames, count);
   }
 }
 
