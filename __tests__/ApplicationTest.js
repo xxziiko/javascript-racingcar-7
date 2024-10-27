@@ -58,3 +58,42 @@ describe("자동차 경주", () => {
     await expect(app.run()).rejects.toThrow("[ERROR]");
   });
 });
+
+describe("자동차 이름 입력 기능", () => {
+  test("기능 테스트", async () => {
+    const inputs = "토마스,니콜라스";
+    const outputs = ["토마스", "니콜라스"];
+
+    mockQuestions([inputs]);
+
+    const app = new App();
+    const carNames = await app.getCarNames(inputs);
+
+    expect(carNames).toEqual(outputs);
+  });
+
+  test.each([[" "], [null], [undefined], [""]])(
+    "공백과 같은 빈 값을 입력받았을 때 에러 처리",
+    (inputs) => {
+      const app = new App();
+
+      expect(() => app.validateCarNames(inputs)).toThrow("[ERROR]");
+    }
+  );
+
+  test("이름이 5자 이상일 경우 예외처리", () => {
+    const inputs = "멋쟁이토마토,과일은맛있어";
+    mockQuestions([inputs]);
+
+    const app = new App();
+    expect(() => app.validateCarNames(inputs).toThrow("[ERROR]"));
+  });
+
+  test("구분자가 쉼표(,)가 아닐 경우 에러 처리", () => {
+    const inputs = "토마스/빵빵맨;캔디보이,니콜라스";
+    mockQuestions([inputs]);
+
+    const app = new App();
+    expect(() => app.validateCarNames(inputs).toThrow("[ERROR]"));
+  });
+});
