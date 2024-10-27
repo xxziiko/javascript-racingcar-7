@@ -24,3 +24,9 @@ export const checkValidLength = (inputs, targetNumber, message) => {
 export const checkValidDelimiter = (inputs, delimiter, message) => {
   if (!inputs.includes(delimiter)) handleError(message);
 };
+
+export const checkValidNumber = (inputs, message) => {
+  if (isNaN(inputs)) handleError(message);
+
+  return inputs;
+};

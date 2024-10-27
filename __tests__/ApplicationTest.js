@@ -97,3 +97,33 @@ describe("자동차 이름 입력 기능", () => {
     expect(() => app.validateCarNames(inputs).toThrow("[ERROR]"));
   });
 });
+
+describe("이동 횟수를 입력받는 기능", () => {
+  test("기능 테스트", async () => {
+    const inputs = "10";
+    const outputs = "10";
+    mockQuestions([inputs]);
+
+    const app = new App();
+    const count = await app.validateCount(inputs);
+
+    expect(count).toEqual(outputs);
+  });
+
+  test.each([[" "], [null], [undefined], [""]])(
+    "공백과 같은 빈 값을 입력받았을 때 에러 처리",
+    (inputs) => {
+      const app = new App();
+
+      expect(() => app.validateCount(inputs)).toThrow("[ERROR]");
+    }
+  );
+
+  test("숫자가 아닌 문자열 입력 시 에러 처리", () => {
+    const inputs = "a";
+    mockQuestions([inputs]);
+
+    const app = new App();
+    expect(() => app.validateCarNames(inputs).toThrow("[ERROR]"));
+  });
+});
