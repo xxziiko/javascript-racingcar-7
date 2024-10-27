@@ -78,16 +78,16 @@ describe("자동차 이름 입력 기능", () => {
     (inputs) => {
       const app = new App();
 
-      expect(() => app.validateCarNames(inputs)).toThrow("[ERROR]");
+      expect(() => app.validateInputs(inputs)).toThrow("[ERROR]");
     }
   );
 
-  test("이름이 5자 이상일 경우 예외처리", () => {
+  test("이름이 5자 이상일 경우 에러 처리", () => {
     const inputs = "멋쟁이토마토,과일은맛있어";
     mockQuestions([inputs]);
 
     const app = new App();
-    expect(() => app.validateCarNames(inputs).toThrow("[ERROR]"));
+    expect(() => app.validateInputs(inputs).toThrow("[ERROR]"));
   });
 
   test("구분자가 쉼표(,)가 아닐 경우 에러 처리", () => {
@@ -95,8 +95,17 @@ describe("자동차 이름 입력 기능", () => {
     mockQuestions([inputs]);
 
     const app = new App();
-    expect(() => app.validateCarNames(inputs).toThrow("[ERROR]"));
+    expect(() => app.validateInputs(inputs).toThrow("[ERROR]"));
   });
+
+  test.each([[["토마스", " ", "니콜라스"]], [["토마스", "니콜라스", ""]]])(
+    "구분자가 문자열 사이에 존재하지 않을 경우 에러처리",
+    (inputs) => {
+      const app = new App();
+
+      expect(() => app.validateCarNames(inputs)).toThrow("[ERROR]");
+    }
+  );
 });
 
 describe("이동 횟수를 입력받는 기능", () => {
