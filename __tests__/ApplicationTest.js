@@ -1,5 +1,6 @@
 import App from "../src/App.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
+import { shouldMove } from "../src/utils.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -125,5 +126,19 @@ describe("이동 횟수를 입력받는 기능", () => {
 
     const app = new App();
     expect(() => app.validateCarNames(inputs).toThrow("[ERROR]"));
+  });
+});
+
+describe("0 ~ 9 사이의 무작위 값 중 4 이상일 경우 전진하는 기능", () => {
+  test("랜덤 값이 4 이상일 때 shouldMove가 true를 반환", () => {
+    mockRandoms([5]);
+
+    expect(shouldMove()).toBe(true);
+  });
+
+  test("랜덤 값이 4 미만일 때 shouldMove가 false를 반환", () => {
+    mockRandoms([3]);
+
+    expect(shouldMove()).toBe(false);
   });
 });
