@@ -6,12 +6,12 @@ export const readInput = async (message) => {
 };
 
 export const handleError = (message) => {
-  const formattedMessage = "[ERROR]" + message;
+  const formattedMessage = "[ERROR] " + message;
   throw Error(formattedMessage);
 };
 
-export const checkEmpty = (inputs, message) => {
-  if (!inputs || !inputs.trim()) handleError(message);
+export const checkEmpty = (string, message) => {
+  if (!string || !string.trim()) handleError(message);
 };
 
 export const checkValidLength = (inputs, targetNumber, message) => {

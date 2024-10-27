@@ -15,7 +15,7 @@ class App {
     this.maxNameLength = maxNameLength;
   }
 
-  validateCarNames(inputs) {
+  validateInputs(inputs) {
     checkEmpty(inputs, MESSAGES.ERROR_EMPTY_NAMES);
     checkValidDelimiter(
       inputs,
@@ -38,10 +38,22 @@ class App {
     return count;
   }
 
+  validateCarNames(carNames) {
+    carNames.forEach((car) => checkEmpty(car, MESSAGES.ERROR_INVALID_INPUT));
+
+    return carNames;
+  }
+
+  splitCarNames(inputs) {
+    const carNames = this.validateInputs(inputs).split(this.delimiter);
+
+    return this.validateCarNames(carNames);
+  }
+
   async getCarNames() {
     const inputs = await readInput(MESSAGES.PROMPT_CAR_NAMES);
 
-    return this.validateCarNames(inputs).split(this.delimiter);
+    return this.splitCarNames(inputs);
   }
 
   async getCount() {
