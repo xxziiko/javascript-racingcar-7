@@ -74,14 +74,27 @@ class App {
 
   play(carNames, count) {
     const progress = Array(carNames.length).fill(0);
-
     this.displayCarProgress(carNames, count, progress);
+
+    return progress;
+  }
+
+  getWiiners(result, carNames) {
+    const maxNumber = Math.max(...result);
+
+    return result.reduce((acc, number, i) => {
+      if (number === maxNumber) acc.push(carNames[i]);
+      return acc;
+    }, []);
   }
 
   async run() {
     const carNames = await this.getCarNames();
     const count = await this.getCount();
-    this.play(carNames, count);
+    const result = this.play(carNames, count);
+    const winners = this.getWiiners(result, carNames);
+
+    printResult(MESSAGES.PRINT_RESULT + winners.join(", "));
   }
 }
 
