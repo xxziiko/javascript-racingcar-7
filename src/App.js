@@ -1,4 +1,4 @@
-import { MESSAGES } from "./constants.js";
+import { MESSAGES } from './constants.js';
 import {
   checkValidDelimiter,
   checkEmpty,
@@ -7,10 +7,10 @@ import {
   checkValidNumber,
   shouldMove,
   printResult,
-} from "./utils.js";
+} from './utils.js';
 
 class App {
-  constructor(delimiter = ",", maxNameLength = 5) {
+  constructor(delimiter = ',', maxNameLength = 5) {
     this.delimiter = delimiter;
     this.maxNameLength = maxNameLength;
   }
@@ -45,15 +45,16 @@ class App {
   }
 
   splitCarNames(inputs) {
-    const carNames = this.validateInputs(inputs).split(this.delimiter);
+    const carNames = inputs.split(this.delimiter);
 
     return this.validateCarNames(carNames);
   }
 
   async getCarNames() {
     const inputs = await readInput(MESSAGES.PROMPT_CAR_NAMES);
+    const validCarNames = this.validateInputs(inputs);
 
-    return this.splitCarNames(inputs);
+    return this.splitCarNames(validCarNames);
   }
 
   async getCount() {
@@ -62,25 +63,25 @@ class App {
     return this.validateCount(count, MESSAGES.ERROR_INVALID_NUMBER);
   }
 
-  countMove(number, array) {
+  updateProgress(number, progressArray) {
     for (let i = 0; i < number; i++) {
-      if (shouldMove()) array[i] += 1;
+      if (shouldMove()) progressArray[i] += 1;
     }
   }
 
-  moveCars(carNames, array) {
-    for (const [i, carName] of carNames.entries()) {
-      printResult(carName.trim() + " : " + "-".repeat(array[i]));
-    }
+  moveCars(carNames, progressArray) {
+    carNames.forEach((carName, i) => {
+      printResult(carName.trim() + ' : ' + '-'.repeat(progressArray[i]));
+    });
   }
 
-  displayCarProgress(carNames, count, array) {
+  displayCarProgress(carNames, count, progressArray) {
     printResult(MESSAGES.PRINT_PROGRESS);
 
     for (let i = 0; i < count; i++) {
-      this.countMove(carNames.length, array);
-      this.moveCars(carNames, array);
-      printResult(" ");
+      this.updateProgress(carNames.length, progressArray);
+      this.moveCars(carNames, progressArray);
+      printResult(' ');
     }
   }
 
@@ -106,7 +107,7 @@ class App {
     const result = this.play(carNames, count);
     const winners = this.getWinners(result, carNames);
 
-    printResult(MESSAGES.PRINT_RESULT + winners.join(", "));
+    printResult(MESSAGES.PRINT_RESULT + winners.join(', '));
   }
 }
 
