@@ -71,7 +71,7 @@ class App {
 
   moveCars(carNames, progressArray) {
     carNames.forEach((carName, i) => {
-      printResult(carName.trim() + ' : ' + '-'.repeat(progressArray[i]));
+      printResult(`${carName.trim()} : ${'-'.repeat(progressArray[i])}`);
     });
   }
 
