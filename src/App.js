@@ -91,7 +91,7 @@ class App {
     return progress;
   }
 
-  getWiiners(result, carNames) {
+  getWinners(result, carNames) {
     const maxNumber = Math.max(...result);
 
     return result.reduce((acc, number, i) => {
@@ -104,7 +104,7 @@ class App {
     const carNames = await this.getCarNames();
     const count = await this.getCount();
     const result = this.play(carNames, count);
-    const winners = this.getWiiners(result, carNames);
+    const winners = this.getWinners(result, carNames);
 
     printResult(MESSAGES.PRINT_RESULT + winners.join(", "));
   }
