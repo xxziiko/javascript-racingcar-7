@@ -134,7 +134,7 @@ describe("이동 횟수를 입력받는 기능", () => {
     mockQuestions([inputs]);
 
     const app = new App();
-    expect(() => app.validateCarNames(inputs).toThrow("[ERROR]"));
+    expect(() => app.validateCount(inputs).toThrow("[ERROR]"));
   });
 });
 
