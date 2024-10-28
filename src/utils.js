@@ -1,4 +1,4 @@
-import { Console, MissionUtils } from "@woowacourse/mission-utils";
+import { Console, MissionUtils } from '@woowacourse/mission-utils';
 
 export const readInput = async (message) => {
   const userInput = await Console.readLineAsync(message);
@@ -6,7 +6,7 @@ export const readInput = async (message) => {
 };
 
 export const handleError = (message) => {
-  const formattedMessage = "[ERROR] " + message;
+  const formattedMessage = '[ERROR] ' + message;
   throw Error(formattedMessage);
 };
 
@@ -15,7 +15,7 @@ export const checkEmpty = (string, message) => {
 };
 
 export const checkValidLength = (inputs, targetNumber, message) => {
-  const names = inputs.split(",");
+  const names = inputs.split(',');
   for (const name of names) {
     if (name.length > targetNumber) handleError(message);
   }
