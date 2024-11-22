@@ -15,6 +15,7 @@ class AppController {
     this.#cars = this.#parseCarNames(carNames);
 
     this.#processAttempts(attempts);
+    this.#printWinners();
   }
 
   #processCarMove() {
@@ -38,6 +39,15 @@ class AppController {
     return carNames.split(CAR_NAME_DELIMITER).map((name) => new Car(name.trim()));
   }
 
+  #printWinners() {
+    const winners = this.#getWinners();
+    ViewOut.printResult(`${MESSEAGES.finalWinners} ${winners.join(`${CAR_NAME_DELIMITER} `)}`);
+  }
+
+  #getWinners() {
+    const maxPosition = Math.max(...this.#cars.map((car) => car.position));
+    return this.#cars.filter((car) => car.position === maxPosition).map((car) => car.name);
+  }
 
   async #getCarNames() {
     const carNames = await ViewIn.getInput(MESSEAGES.inputCarNames);

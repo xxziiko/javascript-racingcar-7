@@ -10,6 +10,7 @@ export const MESSEAGES = Object.freeze({
   inputCarNames: '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
   inputAttempts: '시도할 횟수는 몇 회인가요?\n',
   printResult: '실행 결과',
+  finalWinners: '최종 우승자 : ',
 });
 
 export const MOVE_SYMBOL = '-';

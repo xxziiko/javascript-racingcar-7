@@ -25,6 +25,10 @@ class Car {
     const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
     if (randomNumber >= Car.MIN_MOVE_NUMBER) this.#position += 1;
   }
+
+  getResult() {
+    return formatCarResult(this.#name, this.#position);
+  }
 }
 
 export default Car;
