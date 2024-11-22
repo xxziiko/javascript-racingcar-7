@@ -1,4 +1,4 @@
-import MissionUtils from '@woowacourse/mission-utils';
+import { MissionUtils } from '@woowacourse/mission-utils';
 import { Validator, formatCarResult } from '../shared/index.js';
 
 class Car {
@@ -8,7 +8,7 @@ class Car {
   static MIN_MOVE_NUMBER = 4;
 
   constructor(name) {
-    Validator.validateCarNameLength(value);
+    Validator.validateCarNameLength(name);
     this.#name = name;
     this.position = 0;
   }
