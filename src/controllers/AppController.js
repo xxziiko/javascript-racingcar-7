@@ -1,6 +1,6 @@
-import { Validator, MESSEAGES, CAR_NAME_DELIMITER } from './shared/index.js';
-import { ViewIn, ViewOut } from './Views/index.js';
-import Car from './models/Car.js';
+import { Validator, MESSEAGES, CAR_NAME_DELIMITER } from '../shared/index.js';
+import { ViewIn, ViewOut } from '../Views/index.js';
+import Car from '../models/Car.js';
 
 class AppController {
   #cars;
@@ -31,7 +31,7 @@ class AppController {
     Array.from({ length: attempts }).forEach(() => {
       this.#processCarMove();
 
-      ViewOut.printResult('\n');
+      ViewOut.printResult('');
     });
   }
 
