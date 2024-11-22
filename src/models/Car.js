@@ -13,6 +13,10 @@ class Car {
     this.position = 0;
   }
 
+  get position() {
+    return this.position;
+  }
+
   get name() {
     return this.#name;
   }

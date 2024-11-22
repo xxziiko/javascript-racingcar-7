@@ -13,6 +13,13 @@ class Validator {
     Utils.handleError(carNames.includes(CAR_NAME_DELIMITER), ERROR.invalidDelimiter);
   }
 
+  static validateAttempts(attempts) {
+    Utils.handleError(attempts <= 0, ERROR.invalidAttempts);
+  }
+
+  static validateAttemptsFormat(attempts) {
+    Utils.handleError(isNaN(attempts), ERROR.invalidAttemptsFormat);
+  }
 }
 
 export default Validator;

@@ -16,12 +16,22 @@ class AppController {
     return carNames;
   }
 
+  async getAttempts() {
+    const attempts = await ViewIn.getInput(MESSEAGES.inputAttempts);
+    this.#validateAttempts(attempts);
+
+    return attempts;
+  }
 
   #validateCarName(value) {
     Validator.validateEmptyString(value);
     Validator.validateDelimiter(value);
   }
 
+  #validateAttempts(value) {
+    Validator.validateAttempts(value);
+    Validator.validateAttemptsFormat(value);
+  }
 }
 
 export default AppController;
