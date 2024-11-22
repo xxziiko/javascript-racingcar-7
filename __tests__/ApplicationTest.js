@@ -69,7 +69,7 @@ describe('자동차 경주', () => {
     }
   );
 
-  test.each([['1', '0', '10']])('시도 횟수 예외 테스트', async (attempts) => {
+  test.each([['1', '0', '10', 'a']])('시도 횟수 예외 테스트', async (attempts) => {
     mockQuestions([attempts]);
 
     const app = new App();
