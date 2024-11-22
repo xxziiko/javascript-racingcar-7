@@ -10,7 +10,7 @@ class Validator {
   }
 
   static validateDelimiter(carNames) {
-    Utils.handleError(carNames.includes(CAR_NAME_DELIMITER), ERROR.invalidDelimiter);
+    Utils.handleError(!carNames.includes(CAR_NAME_DELIMITER), ERROR.invalidDelimiter);
   }
 
   static validateAttempts(attempts) {
