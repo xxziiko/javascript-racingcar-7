@@ -4,6 +4,7 @@ export const ERROR = Object.freeze({
   invalidAttempts: '시도할 횟수는 0 이상의 숫자로 입력해야 합니다.',
   invalidAttemptsFormat: '시도할 횟수는 숫자로 입력해야 합니다.',
   invalidDelimiter: '유효하지 않은 구분자 입니다.',
+  duplicateCarName: '자동차 이름이 중복되었습니다.',
 });
 
 export const MESSEAGES = Object.freeze({

@@ -5,6 +5,10 @@ class Validator {
     Utils.handleError(carName.length > 5, ERROR.invalidCarNameLength);
   }
 
+  static validateDuplicateCarName(carNames) {
+    Utils.handleError(carNames.length !== new Set(carNames).size, ERROR.duplicateCarName);
+  }
+
   static validateEmptyString(carName) {
     Utils.handleError(!carName.trim(), ERROR.emptyString);
   }

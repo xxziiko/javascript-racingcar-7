@@ -1,4 +1,4 @@
-import { Validator, MESSEAGES, CAR_NAME_DELIMITER } from '../shared/index.js';
+import { Validator, MESSEAGES, CAR_NAME_DELIMITER, formatWinners } from '../shared/index.js';
 import { ViewIn, ViewOut } from '../Views/index.js';
 import Car from '../models/Car.js';
 
@@ -36,7 +36,10 @@ class AppController {
   }
 
   #parseCarNames(carNames) {
-    return carNames.split(CAR_NAME_DELIMITER).map((name) => new Car(name.trim()));
+    const cars = carNames.split(CAR_NAME_DELIMITER).map((name) => new Car(name.trim()));
+
+    Validator.validateDuplicateCarName(cars);
+    return cars;
   }
 
   #printWinners() {
