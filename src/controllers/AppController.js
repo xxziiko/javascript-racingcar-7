@@ -66,14 +66,14 @@ class AppController {
     return attempts;
   }
 
-  #validateCarName(value) {
-    Validator.validateEmptyString(value);
-    Validator.validateDelimiter(value);
+  #validateCarNames(carNames) {
+    Validator.validateEmptyString(carNames);
+    Validator.validateDelimiter(carNames);
   }
 
-  #validateAttempts(value) {
-    Validator.validateAttempts(value);
-    Validator.validateAttemptsFormat(value);
+  #validateAttempts(attempts) {
+    Validator.validateAttempts(attempts);
+    Validator.validateAttemptsFormat(attempts);
   }
 }
 
