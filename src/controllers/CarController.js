@@ -2,7 +2,7 @@ import { Validator, MESSEAGES, CAR_NAME_DELIMITER, formatWinners } from '../shar
 import { ViewIn, ViewOut } from '../Views/index.js';
 import Car from '../models/Car.js';
 
-class AppController {
+class CarController {
   #cars;
 
   constructor() {
@@ -76,4 +76,4 @@ class AppController {
   }
 }
 
-export default AppController;
+export default CarController;
