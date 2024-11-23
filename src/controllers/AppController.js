@@ -44,7 +44,7 @@ class AppController {
 
   #printWinners() {
     const winners = this.#getWinners();
-    ViewOut.printResult(`${MESSEAGES.finalWinners} ${winners.join(`${CAR_NAME_DELIMITER} `)}`);
+    ViewOut.printResult(formatWinners(winners));
   }
 
   #getWinners() {
