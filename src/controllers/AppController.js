@@ -30,7 +30,6 @@ class AppController {
 
     Array.from({ length: attempts }).forEach(() => {
       this.#processCarMove();
-
       ViewOut.printResult('');
     });
   }
@@ -54,15 +53,15 @@ class AppController {
 
   async #getCarNames() {
     const carNames = await ViewIn.getInput(MESSEAGES.inputCarNames);
-    this.#validateCarName(carNames);
 
+    this.#validateCarNames(carNames);
     return carNames;
   }
 
   async #getAttempts() {
     const attempts = await ViewIn.getInput(MESSEAGES.inputAttempts);
-    this.#validateAttempts(attempts);
 
+    this.#validateAttempts(attempts);
     return attempts;
   }
 
